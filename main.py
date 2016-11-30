@@ -12,3 +12,12 @@ def NVIDA():
     conv_5 = Convolution2D(64, 3, 3, activation='relu', name='conv_5', subsample=(1, 1))(conv_4)
 
     flat = Flatten()(conv_5)
+
+    dense_1 = Dense(1164)(flat)
+    dense_2 = Dense(100)(dense_1)
+    dense_3 = Dense(50)(dense_2)
+    dense_4 = Dense(10)(dense_3)
+
+    final = Dense(1)(dense_4)
+
+    return final
