@@ -1,5 +1,6 @@
 from keras.layers import Convolution2D, Input
 from keras.layers.core import Dense, Flatten
+from keras.models import Model
 
 def NVIDA():
 
@@ -14,10 +15,13 @@ def NVIDA():
     flat = Flatten()(conv_5)
 
     dense_1 = Dense(1164)(flat)
-    dense_2 = Dense(100)(dense_1)
-    dense_3 = Dense(50)(dense_2)
-    dense_4 = Dense(10)(dense_3)
+    dense_2 = Dense(100, activation='relu')(dense_1)
+    dense_3 = Dense(50, activation='relu')(dense_2)
+    dense_4 = Dense(10, activation='relu')(dense_3)
 
     final = Dense(1)(dense_4)
+    
+    model = Model(input=inputs, output=final)
+    model.compile(optimizer='Adam', loss='mse')
 
-    return final
+    return model
