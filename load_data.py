@@ -1,8 +1,10 @@
+from __future__ import division
+
 import os
-import shuffle
 import cv2
 import numpy as np
 import random
+
 
 DATA_FOLDER = 'driving_dataset'
 TRAIN_FILE = os.path.join(DATA_FOLDER, 'data.txt')
@@ -15,7 +17,8 @@ with open(TRAIN_FILE) as fp:
         path, angle = line.strip().split()
         full_path = os.path.join(DATA_FOLDER, path)
         X.append(full_path)
-        y.append(angle)
+        y.append(float(angle))
+
 
 total_images = len(X)
 
@@ -35,4 +38,4 @@ def return_data(split=.8):
     test_X = images[split_index:]
     test_y = y[split_index:]
 
-    return train_X, train_y, test_X, test_y
+    return np.array(train_X), np.array(train_y), np.array(test_X), array.array(test_y)
