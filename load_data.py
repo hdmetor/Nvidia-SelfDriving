@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 import random
 
+from scipy import pi
 
 DATA_FOLDER = 'driving_dataset'
 TRAIN_FILE = os.path.join(DATA_FOLDER, 'data.txt')
@@ -12,12 +13,17 @@ TRAIN_FILE = os.path.join(DATA_FOLDER, 'data.txt')
 X = []
 y = []
 
+from itertools import islice
+
+LIMIT = 10 ** 4
+
 with open(TRAIN_FILE) as fp:
-    for line in fp:
+    for line in islice(fp, LIMIT):
         path, angle = line.strip().split()
         full_path = os.path.join(DATA_FOLDER, path)
         X.append(full_path)
-        y.append(float(angle))
+        # using angles from -pi to pi to avoid rescaling the atan in the network
+        y.append(float(angle) * pi / 180 / 2)
 
 
 total_images = len(X)
@@ -38,4 +44,4 @@ def return_data(split=.8):
     test_X = images[split_index:]
     test_y = y[split_index:]
 
-    return np.array(train_X), np.array(train_y), np.array(test_X), array.array(test_y)
+    return np.array(train_X), np.array(train_y), np.array(test_X), np.array(test_y)
