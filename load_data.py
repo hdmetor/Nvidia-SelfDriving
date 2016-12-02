@@ -15,7 +15,7 @@ y = []
 
 from itertools import islice
 
-LIMIT = 10 ** 3
+LIMIT = None
 
 with open(TRAIN_FILE) as fp:
     for line in islice(fp, LIMIT):
@@ -34,7 +34,7 @@ pairs = list(zip(X, y))
 random.shuffle(pairs)
 X, y = zip(*pairs)
 
-# the expected dimension is
+# the expected dimension is (tf ordering)
 # (None, 66, 200, 3)
 def return_data(split=.8):
 
