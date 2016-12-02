@@ -1,11 +1,11 @@
 from __future__ import division
 
 import os
-import cv2
 import numpy as np
 import random
 
 from scipy import pi
+from scipy.misc import imread, imresize
 
 DATA_FOLDER = 'driving_dataset'
 TRAIN_FILE = os.path.join(DATA_FOLDER, 'data.txt')
@@ -15,7 +15,7 @@ y = []
 
 from itertools import islice
 
-LIMIT = 10 ** 4
+LIMIT = 10 ** 3
 
 with open(TRAIN_FILE) as fp:
     for line in islice(fp, LIMIT):
@@ -34,9 +34,11 @@ pairs = list(zip(X, y))
 random.shuffle(pairs)
 X, y = zip(*pairs)
 
+# the expected dimension is
+# (None, 66, 200, 3)
 def return_data(split=.8):
 
-    images = [np.float32(cv2.resize(cv2.imread(im, cv2.IMREAD_COLOR), (200, 66))) / 255 for im in X]
+    images = [np.float32(imresize(imread(im), size=(66, 200))) / 255 for im in X]
     split_index = int(split * len(X))
     train_X = images[:split_index]
     train_y = y[:split_index]

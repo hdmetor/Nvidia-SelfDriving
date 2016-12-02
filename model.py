@@ -5,6 +5,7 @@ from keras.models import Model, Sequential
 import tensorflow as tf
 
 from keras import backend as K
+K.set_image_dim_ordering('tf')
 
 def atan_layer(x):
     print(x, tf.mul(tf.atan(x), 2))
