@@ -2,7 +2,7 @@
 
 Keras implementation of [End to End Learning for Self-Driving Cars](https://arxiv.org/pdf/1604.07316.pdf) by Nvidia.
 
-Many thanks to [Sully Chen](https://github.com/SullyChen) for the original TensorFLow implementation and for sharing his own [dataset](https://drive.google.com/file/d/0B-KJCaaF7ellQUkzdkpsQkloenM/view?usp=sharing), used here for training.
+Many thanks to [Sully Chen](https://github.com/SullyChen) for the [original](https://github.com/SullyChen/Autopilot-TensorFlow) TensorFlow implementation and for sharing his own [dataset](https://drive.google.com/file/d/0B-KJCaaF7ellQUkzdkpsQkloenM/view?usp=sharing), used here for training.
 
 # Network
 
