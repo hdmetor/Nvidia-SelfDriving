@@ -1,5 +1,5 @@
 from keras.layers import Convolution2D, Input
-from keras.layers.core import Dense, Flatten, Lambda, Activation
+from keras.layers.core import Dense, Flatten, Lambda, Activation, Dropout
 from keras.models import Model, Sequential
 
 import tensorflow as tf

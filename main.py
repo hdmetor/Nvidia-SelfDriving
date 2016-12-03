@@ -21,3 +21,5 @@ nvidia.fit(train_x, train_y,
     batch_size=batch_size,
     callbacks=[checkpointer]
 )
+
+print('end')
