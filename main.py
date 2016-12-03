@@ -8,7 +8,7 @@ train_x, train_y, test_x, test_y = load_data.return_data()
 
 
 checkpointer = ModelCheckpoint(
-    filepath="weights.hdf5",
+    filepath="weights_dropout.hdf5",
     verbose=1,
     save_best_only=True
 )
