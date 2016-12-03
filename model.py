@@ -19,8 +19,8 @@ def atan(x):
 
 def NVIDA():
 
-    inputs = Input(shape=(66, 200, 3))
-    inputs = Dropout(.5)(input)
+    init_inputs = Input(shape=(66, 200, 3))
+    inputs = Dropout(.5)(init_inputs)
     conv_1 = Convolution2D(24, 5, 5, activation='relu', name='conv_1', subsample=(2, 2))(inputs)
     conv_1 = Dropout(.5)(conv_1)
     conv_2 = Convolution2D(36, 5, 5, activation='relu', name='conv_2', subsample=(2, 2))(conv_1)
@@ -49,7 +49,7 @@ def NVIDA():
     #angle = Lambda(lambda x: tf.mul(tf.atan(x), 2))(final)
 
 
-    model = Model(input=inputs, output=final)
+    model = Model(input=init_inputs, output=final)
     model.compile(optimizer='Adam', loss='mse')
 
     return model
