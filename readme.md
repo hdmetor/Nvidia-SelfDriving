@@ -6,7 +6,7 @@ Many thanks to [Sully Chen](https://github.com/SullyChen) for the [original](htt
 
 # Network
 
-. The network consists of 5 convolution layers (three 5x5 and two 3x3), and 4 fully connected layers on top.
+The network consists of 5 convolution layers (three 5x5 and two 3x3), and 4 fully connected layers on top.
 
 # Howto
 
