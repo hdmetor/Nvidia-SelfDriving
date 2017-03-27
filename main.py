@@ -11,7 +11,7 @@ print('Loading model')
 nvidia = NVIDA()
 
 checkpointer = ModelCheckpoint(
-    filepath="weights_dropout.hdf5",
+    filepath="{epoch:02d}-{val_loss:.12f}.hdf5",
     verbose=1,
     save_best_only=True
 )
