@@ -43,7 +43,7 @@ def NVIDA():
     #angle = Lambda(lambda x: tf.mul(tf.atan(x), 2))(final)
 
 
-    model = Model(input=init_inputs, output=final)
+    model = Model(input=inputs, output=final)
     model.compile(optimizer='Adam', loss='mse')
 
     return model
