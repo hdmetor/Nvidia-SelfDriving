@@ -19,7 +19,7 @@ checkpointer = ModelCheckpoint(
     save_best_only=True
 )
 
-lr_plateau = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=0.000001, verbose=1. mode=min)
+lr_plateau = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=0.000001, verbose=1, mode=min)
 
 monitor = RemoteMonitor(root='http://localhost:9000', path='/publish/epoch/end/', field='data', headers=None)
 
