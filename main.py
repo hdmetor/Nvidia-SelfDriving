@@ -1,8 +1,10 @@
+import time
+import json
+
 import load_data
 from model import NVIDA
-import time
 
-from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
+from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, RemoteMonitor
 
 print('Loading data...')
 train_x, train_y, test_x, test_y = load_data.return_data()
@@ -17,7 +19,9 @@ checkpointer = ModelCheckpoint(
     save_best_only=True
 )
 
-lr_plateau = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=5, min_lr=0.000001)
+lr_plateau = ReduceLROnPlateau(monitor='val_loss', factor=0.2, patience=5, min_lr=0.000001, verbose=1. mode=min)
+
+monitor = RemoteMonitor(root='http://localhost:9000', path='/publish/epoch/end/', field='data', headers=None)
 
 epochs = 100
 batch_size = 128
@@ -27,7 +31,7 @@ history = nvidia.fit(train_x, train_y,
     validation_data=(test_x, test_y),
     nb_epoch=epochs,
     batch_size=batch_size,
-    callbacks=[checkpointer, lr_plateau]
+    callbacks=[checkpointer, lr_plateau, monitor]
 )
 
 with open('history_{}.json'.format(time.time()), 'wb') as fp:
