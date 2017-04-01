@@ -1,6 +1,7 @@
 from keras.layers import Convolution2D, Input
 from keras.layers.core import Dense, Flatten, Lambda, Activation, Dropout
 from keras.models import Model, Sequential
+from keras.optimizers import SGD
 
 import tensorflow as tf
 
@@ -44,7 +45,9 @@ def NVIDA():
 
 
     model = Model(input=inputs, output=final)
-    model.compile(optimizer='Adam', loss='mse')
+    model.compile(
+        optimizer=SGD(lr=.001, momentum=.9),
+        loss='mse')
 
     return model
 
